@@ -19,28 +19,29 @@
     function computerPlay() {
       let play = getRandomInt();
       if (play === 1) {
-        let play = "Rock";
+        let play = "rock";
         return play;
       } else if (play === 2) {
-        let play = "Paper";
+        let play = "paper";
         return play;
       } else {
-        let play = "Scissors";
+        let play = "scissors";
         return play;
       }
     }
 
     //This function evaluates the outcome between user and computer inputs.
 
-    const playerSelection = "Rock";
+    const playerInitSelection = prompt("Make a selection: rock, paper, or scissors!","");
     const computerSelection = computerPlay();
-
+    const playerSelection = playerInitSelection.toLowerCase();
 
     function playRound(playerSelection,computerSelection) {
-      if (playerSelection === "Rock" && computerSelection === "Paper") {
-        console.log("Loss! " + playerSelection +" "+ "loses to " + computerSelection);
-      } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        console.log ("Win! " + playerSelection + " " + "beats " + computerSelection);
+
+      if (playerSelection === "rock" && computerSelection === "paper") {
+        console.log("Loss! " + playerSelection +" "+ "loses to " + computerSelection + ".");
+      } else if (playerSelection === "rock" && computerSelection === "scissors") {
+        console.log ("Win! " + playerSelection + " " + "beats " + computerSelection + ".");
       } else {
         console.log ("Tie! Player chose: " + playerSelection + ". Computer chose: " + computerSelection + ".");
       }

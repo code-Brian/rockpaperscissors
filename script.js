@@ -103,8 +103,8 @@ function getRandomInt() {
     console.log("Stalemates: " + stalemates);
   }
 
-  // this function will play a game of 5 rounds and report a winner / loser at the end
-  /*
+  // this function will declare victory after the first player to five rounds
+  
   function game() {
     let rounds = 4;
     for (let i = 0; i <= rounds; i++) {
@@ -125,7 +125,7 @@ function getRandomInt() {
     } else {
       console.log("idk i haven't thought of this possibility........")
     }
-  } */
+  } 
  
 const buttons = document.querySelectorAll('button');
 
@@ -133,5 +133,11 @@ buttons.forEach((button) => {
     button.addEventListener('click', () => {
         playRound(button.id, computerPlay());
         console.log(button.id);
+        results.textContent = `Player Wins: ${playerWinCount}. Computer Wins: ${computerWinCount}.`; 
     });
 });
+
+const container = document.querySelector('#container');
+const results = document.createElement('p');
+results.textContent = `Player Wins: ${playerWinCount}. Computer Wins: ${computerWinCount}.`;
+container.appendChild(results);

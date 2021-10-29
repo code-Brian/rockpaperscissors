@@ -29,40 +29,40 @@ function getRandomInt() {
       console.log("Defeat! " + playerSelection + " is engulfed by " + computerSelection + ".");
       playerDefeat();
       computerVictory();
-      showScore();
+      trackScore();
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
       console.log("Victory! " + playerSelection + " smashes " + computerSelection + ".");
       playerVictory();
       computerDefeat();
-      showScore();
+      trackScore();
     }  
     // function checks if player chooses paper
     if (playerSelection === "paper" && computerSelection === "scissors") {
       console.log("Defeat! " + playerSelection + " is cut by " + computerSelection + ".");
       playerDefeat();
       computerVictory();
-      showScore();
+      trackScore();
     } else if (playerSelection === "paper" && computerSelection === "rock" ) {
       console.log("Victory! " + playerSelection + " engulfs " + computerSelection + ".");
       playerVictory();
       computerDefeat();
-      showScore();
+      trackScore();
     }
     // function checks if player chooses scissors
     if (playerSelection === "scissors" && computerSelection === "rock") {
       console.log("Defeat! " + playerSelection + " are crushed by " + computerSelection + ".");
       playerDefeat();
       computerVictory();
-      showScore();
+      trackScore();
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
       console.log("Victory! " + playerSelection + " shred " + computerSelection + ".");
       playerVictory();
       computerDefeat();
-      showScore();
+      trackScore();
     } else if (playerSelection === computerSelection) {
       console.log("Stalemate! Player chose: " + playerSelection + ". Computer chose: " + computerSelection + ".");
       stalemate();
-      showScore();
+      trackScore();
     }
 
   }
@@ -96,44 +96,33 @@ function getRandomInt() {
   function stalemate() {
     return stalemates++;
   }
+
+  function resetScore() {
+    playerWinCount = 0;
+    computerWinCount = 0;
+  }
+
   // this function shows the score
-  function showScore() {
-    console.log("Player wins/losses: " + playerWinCount + " / " + playerLossCount);
-    console.log("Computer wins/losses: " + computerWinCount + " / " + computerLossCount);
-    console.log("Stalemates: " + stalemates);
+  function trackScore() {
+    results.textContent = `Player Wins: ${playerWinCount}. Computer Wins: ${computerWinCount}.`; 
+    if ( playerWinCount === 5 ) {
+      results.textContent = `Winner! Player won 5 rounds! Player Wins: ${playerWinCount}. Computer Wins: ${computerWinCount}.`;
+      resetScore();
+    } else if (computerWinCount === 5) {
+      results.textContent = `Winner! Computer won 5 rounds! Player Wins: ${playerWinCount}. Computer Wins: ${computerWinCount}.`;
+      resetScore();
+    }
   }
 
   // this function will declare victory after the first player to five rounds
   
-  function game() {
-    let rounds = 4;
-    for (let i = 0; i <= rounds; i++) {
-      const playerInitSelection = prompt("Make a selection: rock, paper, or scissors!","");
-      const playerSelection = playerInitSelection.toLowerCase();
-      const computerSelection = computerPlay();
-      playRound(playerSelection, computerSelection)
-    }
-    if (playerWinCount > computerWinCount) {
-      console.log("Player wins the war!");
-      showScore();
-    } else if (computerWinCount > playerWinCount) {
-      console.log("Computer wins the war!");
-      showScore();
-    } else if (playerWinCount === computerWinCount) {
-      console.log("Stalemate! NO ONE WINS!");
-      showScore();
-    } else {
-      console.log("idk i haven't thought of this possibility........")
-    }
-  } 
- 
+
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         playRound(button.id, computerPlay());
         console.log(button.id);
-        results.textContent = `Player Wins: ${playerWinCount}. Computer Wins: ${computerWinCount}.`; 
     });
 });
 
